@@ -12,9 +12,7 @@ comment the Haproxy (which is the default service provider for LOADBALANCER) und
     service_provider = LOADBALANCER:brocade:neutron.services.loadbalancer.drivers.brocade.plugin_driver_v1.BrocadePluginDriverV1:default
 
 
-To use this plugin driver, you must:
- - Install Brocade Neutron LBaaS Device Driver (from the Brocade Git Hub Location). Basically, download the  brocade_neutron_lbaas-1.0.tar.gz, unpack it in a temporary locaion and run sudo python setup.py install.
- - Create a driver config file, under /etc/neutron/services/loadbalancer/brocade/devices.json.
+- Create a driver config file, under /etc/neutron/services/loadbalancer/brocade/devices.json.
 
 Sample Configuration File:
 [
