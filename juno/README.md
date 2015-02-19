@@ -1,30 +1,28 @@
-- Untar brocade_lbaas_plugin.tar.gz under $NEUTRON_HOME/services/loadbalancer/drivers directory.
-  Example: $NEUTRON_HOME typically would be /usr/local/lib/python2.7/dist-packages/neutron
+Install Instructions
+--------------------
 
-- Untar brocade_neutron_lbaas-1.0.tar.gz to a temporary location and unpack the contents.
-  After that, Execute 'sudo python setup.py install'. This will install the Brocade Neutron LBaaS 
-  Device Driver in the python dist-packages
+- Install Brocade OpenStack LBaaS Plugin Driver Code
 
-- Enable the Brocade LBaaS Plugin Driver in neutron.conf
+    - Untar brocade_lbaas_plugin.tar.gz under $NEUTRON_HOME/services/loadbalancer/drivers directory.
 
-comment the Haproxy (which is the default service provider for LOADBALANCER) under service_provider section and specify Brocade as the service provider for LOADBALANCER (as shown below)
+    - $NEUTRON_HOME is the location where OpenStack Neutron component is installed. For example, $NEUTRON_HOME could be /usr/local/lib/python2.7/dist-packages/neutron
 
-    service_provider = LOADBALANCER:brocade:neutron.services.loadbalancer.drivers.brocade.plugin_driver_v1.BrocadePluginDriverV1:default
+- Install Brocade LBaaS Device Driver Python Module
 
+    - Copy brocade_neutron_lbaas-1.0.tar.gz to a temporary location 
 
-- Create a driver config file, under /etc/neutron/services/loadbalancer/brocade/devices.json.
+    - Unpack the file ("tar zxvf brocade_neutron_lbaas-1.0.tar.gz")
 
-Sample Configuration File:
-[
-    {
-        "name" :"Device 1",
-        "ip":"10.24.143.168",
-        "user":"admin",
-        "password":"brocade",
-        "subnet_id":[
-            "<subnetwork_id>"]
-    }
-]
+    - Change directory ("cd  brocade_neutron_lbaas-1.0")
 
+    - Run "sudo python setup.py install")
+
+- Enable Brocade OpenStack LBaaS Plugin Driver as the service provider for LOADBALANCER service in neutron.conf
+
+    - Comment the Haproxy (typically the default service provider for LOADBALANCER) under service_provider section 
+
+    - Specify Brocade as the service provider for LOADBALANCER (as shown below)
+
+      service_provider = LOADBALANCER:brocade:neutron.services.loadbalancer.drivers.brocade.plugin_driver_v1.BrocadePluginDriverV1:default
 
 - Restart the Neutron Server
